@@ -1,5 +1,5 @@
 import CarBookingForm from "../../components/CarBookingForm/CarBookingForm";
-import CarInfo from "../../components/CarInfo/CarInfo.jsx/CarInfo";
+import CarInfo from "../../components/CarInfo/CarInfo";
 
 const CarPage = () => {
   return (

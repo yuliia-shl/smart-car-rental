@@ -1,10 +1,10 @@
 import CarCatalog from "../../components/CarCatalog/CarCatalog";
-import Filter from "../../components/Filter/Filter";
+import FilterPanel from "../../components/FilterPanel/FilterPanel";
 
 const CatalogPage = () => {
   return (
     <div>
-      <Filter />
+      <FilterPanel />
       <CarCatalog />
     </div>
   );
