@@ -6,3 +6,9 @@
   justify-content: center;
   align-items: center;
 }
+
+.carItem {
+  display: flex;
+  flex-direction: column;
+  width: 276px;
+}

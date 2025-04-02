@@ -1,7 +1,6 @@
-.carItem {
-  display: flex;
-  flex-direction: column;
-  width: 276px;
+.imgWrap {
+  position: relative;
+  display: inline-block;
 }
 
 .img {
@@ -11,6 +10,16 @@
   object-fit: cover;
   margin-bottom: 16px;
   background: linear-gradient(180deg, rgba(18, 20, 23, 0.5) 0%, rgba(18, 20, 23, 0.5) 100%);
+}
+
+.iconHeart {
+  fill: var(--badges);
+  width: 16px;
+  height: 15px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
 }
 
 .brandWrap {
