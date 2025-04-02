@@ -1,0 +1,29 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.large {
+  min-width: 276px;
+}
+
+.small {
+  min-width: 156px;
+}
+
+.primary {
+  background-color: var(--button);
+  color: var(--white);
+}
+
+.secondary {
+  border: 1px solid var(--button);
+  background-color: var(--white);
+  color: var(--main);
+}

@@ -1,0 +1,42 @@
+.hero {
+  width: 100%;
+  min-height: 700px;
+  background: rgba(0, 0, 0, 0.2);
+  background-image: url('../../assets/images/hero-desc-1x.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  padding-top: 440px;
+}
+
+@media only screen and (min-device-pixel-ratio: 2),
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min-resolution: 192dpi) {
+  .hero {
+    background-image: url('../../assets/images/hero-desc-2x.webp');
+  }
+}
+
+.wrapper {
+  text-align: center;
+}
+
+.heroTitle {
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.heroText {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  text-align: center;
+  color: var(--white);
+  margin-bottom: 40px;
+}

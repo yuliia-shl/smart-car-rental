@@ -1,0 +1,17 @@
+.navList {
+  display: flex;
+  gap: 32px;
+}
+
+.navItem {
+  padding: 24px 0;
+}
+
+.link {
+  text-decoration: none;
+  padding: 24px 0;
+}
+
+.active {
+  color: var(--button-hover);
+}
