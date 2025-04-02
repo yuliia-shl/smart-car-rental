@@ -1,0 +1,40 @@
+.carItem {
+  display: flex;
+  flex-direction: column;
+  width: 276px;
+}
+
+.img {
+  border-radius: 14px;
+  width: 276px;
+  height: 268px;
+  object-fit: cover;
+  margin-bottom: 16px;
+  background: linear-gradient(180deg, rgba(18, 20, 23, 0.5) 0%, rgba(18, 20, 23, 0.5) 100%);
+}
+
+.brandWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.blue {
+  color: var(--button);
+}
+
+.infoWrap {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33;
+  color: var(--gray);
+  gap: 4px;
+  margin-bottom: 32px;
+}
+
+.svg {
+  width: 2px;
+  height: 16px;
+  margin: 0 6px;
+}
