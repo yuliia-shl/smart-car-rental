@@ -78,15 +78,21 @@
 
 ### Крок 1: Клонування репозиторію
 
-` git clone https://github.com/yuliia-shl/smart-car-rental.git`
+```java script
+git clone https://github.com/yuliia-shl/smart-car-rental.git
+```
 
 ### Крок 2: Встановлення залежностей
 
-`npm install`
+```java script
+npm install
+```
 
 ### Крок 3: Запуск проекту bash
 
-`npm run dev`
+```java script
+npm run dev
+```
 
 ### Крок 4: Відкриття додатку
 
@@ -112,4 +118,4 @@
 
 - Ім'я: Юлія Шляпцева
 
-- GitHub: [Посилання на GitHub профіль](https://github.com/yuliia-shl)
+- [GitHub](https://github.com/yuliia-shl)
