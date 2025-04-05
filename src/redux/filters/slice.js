@@ -23,9 +23,10 @@ const slice = createSlice({
     changeMaxMileage: (state, action) => {
       state.maxMileage = action.payload;
     },
+    clearFilter: () => initialState,
   },
 });
 
-export const { changeBrand, changeRentalPrice, changeMinMileage, changeMaxMileage, resetFilters } =
+export const { changeBrand, changeRentalPrice, changeMinMileage, changeMaxMileage, clearFilter } =
   slice.actions;
 export const filterReducer = slice.reducer;

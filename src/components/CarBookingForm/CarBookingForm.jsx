@@ -20,7 +20,7 @@ const CarBookingForm = () => {
 
           <textarea name="" id="" placeholder="Comment" className={s.textarea}></textarea>
         </div>
-        <Button label="Send" size="small" />
+        <Button label="Send" size="small" type="submit" />
       </form>
     </div>
   );

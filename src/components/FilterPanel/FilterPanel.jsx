@@ -14,6 +14,7 @@ import {
   changeMaxMileage,
   changeMinMileage,
   changeRentalPrice,
+  clearFilter,
 } from '../../redux/filters/slice';
 
 const FilterPanel = () => {
@@ -49,6 +50,7 @@ const FilterPanel = () => {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(clearCars());
+    dispatch(clearFilter());
 
     const params = {};
 
@@ -140,7 +142,7 @@ const FilterPanel = () => {
         </div>
       </div>
 
-      <Button label="Search" size="small" />
+      <Button label="Search" size="small" type="submit" />
     </form>
   );
 };
