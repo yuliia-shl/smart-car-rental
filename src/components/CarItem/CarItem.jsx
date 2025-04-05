@@ -1,9 +1,10 @@
 import Button from '../Button/Button';
 import s from './CarItem.module.css';
 import sprite from '../../assets/sprite.svg';
+import { Link } from 'react-router-dom';
 
 const CarItem = ({ car }) => {
-  const { address, brand, img, mileage, model, rentalCompany, rentalPrice, type, year } = car;
+  const { address, brand, img, id, mileage, model, rentalCompany, rentalPrice, type, year } = car;
   const formattedMileage = mileage.toLocaleString('uk-UA');
   const addressParts = address.split(', ');
   const city = addressParts[1];
@@ -24,9 +25,9 @@ const CarItem = ({ car }) => {
         </svg>
       </div>
       <div className={s.brandWrap}>
-        <p>
+        <h4>
           {brand} <span className={s.blue}>{model},</span> {year}
-        </p>
+        </h4>
         <span>${rentalPrice}</span>
       </div>
 
@@ -50,7 +51,9 @@ const CarItem = ({ car }) => {
           {formattedMileage} km
         </p>
       </div>
-      <Button label="Read more" />
+      <Link to={`/catalog/${id.toString()}`}>
+        <Button label="Read more" />
+      </Link>
     </>
   );
 };

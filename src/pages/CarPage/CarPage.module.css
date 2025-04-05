@@ -1,0 +1,18 @@
+.carPage {
+  display: flex;
+  gap: 72px;
+}
+
+.leftWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.img {
+  border-radius: 19px;
+  min-width: 640px;
+  height: 512px;
+  object-fit: cover;
+  background: linear-gradient(180deg, rgba(18, 20, 23, 0.5) 0%, rgba(18, 20, 23, 0.5) 100%);
+}
