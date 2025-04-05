@@ -29,7 +29,7 @@ export const fetchBrands = createAsyncThunk('cars/fetchBrands', async (_, thunkA
 export const fetchCarById = createAsyncThunk('cars/fetchCarById', async (id, thunkAPI) => {
   try {
     const response = await carRentalApi.get(`/cars/${id}`);
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.message);

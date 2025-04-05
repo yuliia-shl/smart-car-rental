@@ -20,10 +20,22 @@
 .primary {
   background-color: var(--button);
   color: var(--white);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.primary:hover,
+.primary:focus {
+  background-color: var(--button-hover);
 }
 
 .secondary {
   border: 1px solid var(--button);
   background-color: var(--white);
   color: var(--main);
+  transition: border 0.3s ease-in-out;
+}
+
+.secondary:hover,
+.secondary:focus {
+  border: 1px solid var(--button-hover);
 }

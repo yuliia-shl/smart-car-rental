@@ -10,7 +10,6 @@ const CarInfo = ({ carById }) => {
     engineSize,
     fuelConsumption,
     functionalities = [],
-    // img,
     mileage,
     model,
     rentalConditions = [],
@@ -26,7 +25,7 @@ const CarInfo = ({ carById }) => {
 
   return (
     <>
-      <div>
+      <div className={s.carInfoWrap}>
         <div className={s.detailsContainer}>
           <div className={s.titleWrap}>
             <h2 className={s.title}>
@@ -103,7 +102,6 @@ const CarInfo = ({ carById }) => {
                     <p>{item}</p>
                   </li>
                 ))}
-                <li></li>
               </ul>
             )}
           </div>
