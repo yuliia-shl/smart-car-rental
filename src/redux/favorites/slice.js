@@ -2,14 +2,23 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   items: [],
-  loading: false,
-  error: null,
 };
 
 const slice = createSlice({
   name: 'favorites',
   initialState,
-  reducers: {},
+  reducers: {
+    toggleFavorite: (state, action) => {
+      const car = action.payload;
+      const isFavorite = state.items.some(favorite => favorite.id === car.id);
+      if (isFavorite) {
+        state.items = state.items.filter(favorite => favorite.id !== car.id);
+      } else {
+        state.items.push(car);
+      }
+    },
+  },
 });
+export const { toggleFavorite } = slice.actions;
 
 export const favoritesReducer = slice.reducer;

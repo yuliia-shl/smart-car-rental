@@ -2,6 +2,10 @@ import Button from '../Button/Button';
 import s from './CarItem.module.css';
 import sprite from '../../assets/sprite.svg';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFavorites } from '../../redux/favorites/selectors';
+import { toggleFavorite } from '../../redux/favorites/slice';
+import clsx from 'clsx';
 
 const CarItem = ({ car }) => {
   const { address, brand, img, id, mileage, model, rentalCompany, rentalPrice, type, year } = car;
@@ -9,6 +13,13 @@ const CarItem = ({ car }) => {
   const addressParts = address.split(', ');
   const city = addressParts[1];
   const country = addressParts[2];
+  const dispatch = useDispatch();
+  const favorites = useSelector(selectFavorites);
+  const isFavorite = favorites.find(favorite => favorite.id === car.id);
+
+  const handleFavoriteClick = () => {
+    dispatch(toggleFavorite(car));
+  };
 
   return (
     <>
@@ -20,9 +31,18 @@ const CarItem = ({ car }) => {
           height="268"
           className={s.img}
         />
-        <svg className={s.iconHeart}>
-          <use xlinkHref={`${sprite}#icon-heart`} />
-        </svg>
+        <div onClick={handleFavoriteClick}>
+          {isFavorite ? (
+            // Favorite's car icon
+            <svg className={clsx(s.iconHeart, s.iconHeartActive)}>
+              <use xlinkHref={`${sprite}#icon-heart-active`} />
+            </svg>
+          ) : (
+            <svg className={s.iconHeart}>
+              <use xlinkHref={`${sprite}#icon-heart`} />
+            </svg>
+          )}
+        </div>
       </div>
       <div className={s.brandWrap}>
         <h4>

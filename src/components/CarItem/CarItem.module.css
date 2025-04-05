@@ -22,6 +22,10 @@
   cursor: pointer;
 }
 
+.iconHeartActive {
+  fill: var(--button);
+}
+
 .brandWrap {
   display: flex;
   align-items: center;
