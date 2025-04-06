@@ -204,7 +204,6 @@ select {
 .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle {
   fill: var(--white) !important;
   color: var(--button) !important;
-  /* stroke: var(--white) !important; */
 }
 
 .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle {

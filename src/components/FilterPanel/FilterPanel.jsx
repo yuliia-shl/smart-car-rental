@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import clsx from 'clsx';
-import sprite from '../../assets/sprite.svg';
 import Button from '../Button/Button';
 import s from './FilterPanel.module.css';
 import { selectBrands } from '../../redux/cars/selectors';
 import { fetchBrands, fetchCars } from '../../redux/cars/operations';
 import { clearCars } from '../../redux/cars/slice';
 import { selectFilters } from '../../redux/filters/selectors';
+import Select from 'react-select';
 import {
   changeBrand,
   changeMaxMileage,
@@ -16,13 +16,12 @@ import {
   changeRentalPrice,
   clearFilter,
 } from '../../redux/filters/slice';
+import { customStyles } from '../../utils/customStyles';
 
 const FilterPanel = () => {
   const dispatch = useDispatch();
   const brands = useSelector(selectBrands);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [isBrandOpen, setIsBrandOpen] = useState(false);
-  const [isPriceOpen, setIsPriceOpen] = useState(false);
   const { filterBrand, rentalPrice, minMileage, maxMileage } = useSelector(selectFilters);
 
   useEffect(() => {
@@ -41,35 +40,12 @@ const FilterPanel = () => {
     dispatch(changeMaxMileage(max));
   }, [dispatch, searchParams]);
 
-  const handleBrandChange = e => {
-    const selectedBrand = e.target.value;
-    dispatch(changeBrand(selectedBrand));
-    setIsBrandOpen(false);
+  const handleBrandChange = selectedOption => {
+    dispatch(changeBrand(selectedOption.value));
   };
 
-  const handleBrandBlur = () => {
-    setTimeout(() => {
-      setIsBrandOpen(false);
-    }, 100);
-  };
-
-  const handleBrandMouseDown = () => {
-    setIsBrandOpen(true);
-  };
-
-  const handlePriceChange = e => {
-    dispatch(changeRentalPrice(Number(e.target.value)));
-    setIsPriceOpen(false);
-  };
-
-  const handlePriceBlur = () => {
-    setTimeout(() => {
-      setIsPriceOpen(false);
-    }, 100);
-  };
-
-  const handlePriceMouseDown = () => {
-    setIsPriceOpen(true);
+  const handlePriceChange = selectedOption => {
+    dispatch(changeRentalPrice(selectedOption.value));
   };
 
   const handleMinMileageChange = e => dispatch(changeMinMileage(e.target.value));
@@ -99,6 +75,16 @@ const FilterPanel = () => {
     );
   };
 
+  const brandOptions = brands.map(brand => ({
+    value: brand,
+    label: brand,
+  }));
+
+  const priceOptions = [...Array(18)].map((_, i) => ({
+    value: 30 + i * 10,
+    label: `${30 + i * 10} $`,
+  }));
+
   return (
     <form className={s.form} onSubmit={handleSubmit}>
       <div className={s.labelWrap}>
@@ -106,31 +92,16 @@ const FilterPanel = () => {
           Car brand
         </label>
         <div className={s.selectWrapper}>
-          <select
+          <Select
             id="brand"
             name="brand"
-            className={s.select}
+            className={clsx(s.select)}
+            options={brandOptions}
+            value={brandOptions.find(option => option.value === filterBrand)}
             onChange={handleBrandChange}
-            value={filterBrand}
-            onBlur={handleBrandBlur}
-            onMouseDown={handleBrandMouseDown}
-          >
-            <option value="">Choose a brand</option>
-            {brands.map(brand => (
-              <option key={brand} value={brand}>
-                {brand}
-              </option>
-            ))}
-          </select>
-          {isBrandOpen ? (
-            <svg className={s.iconSelect}>
-              <use xlinkHref={`${sprite}#icon-up`} />
-            </svg>
-          ) : (
-            <svg className={s.iconSelect}>
-              <use xlinkHref={`${sprite}#icon-down`} />
-            </svg>
-          )}
+            placeholder="Choose a brand"
+            styles={customStyles}
+          />
         </div>
       </div>
 
@@ -139,34 +110,16 @@ const FilterPanel = () => {
           Price/ 1 hour
         </label>
         <div className={s.selectWrapper}>
-          <select
+          <Select
             id="price"
             name="price"
-            className={s.select}
+            className={clsx(s.select)}
+            options={priceOptions}
+            value={priceOptions.find(option => option.value === rentalPrice)}
             onChange={handlePriceChange}
-            value={rentalPrice}
-            onBlur={handlePriceBlur}
-            onMouseDown={handlePriceMouseDown}
-          >
-            <option value="">Choose a price</option>
-            {[...Array(18)].map((_, i) => {
-              const price = 30 + i * 10;
-              return (
-                <option key={price} value={price}>
-                  {price}
-                </option>
-              );
-            })}
-          </select>
-          {isPriceOpen ? (
-            <svg className={s.iconSelect}>
-              <use xlinkHref={`${sprite}#icon-up`} />
-            </svg>
-          ) : (
-            <svg className={s.iconSelect}>
-              <use xlinkHref={`${sprite}#icon-down`} />
-            </svg>
-          )}
+            placeholder="Choose a price"
+            styles={customStyles} // Apply custom styles
+          />
         </div>
       </div>
 

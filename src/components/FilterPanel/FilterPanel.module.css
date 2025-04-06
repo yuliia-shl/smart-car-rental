@@ -12,45 +12,15 @@
   gap: 8px;
 }
 
-.selectWrapper {
+/* .selectWrapper {
   position: relative;
-}
+} */
 
 .label {
   font-weight: 400;
   font-size: 12px;
   line-height: 1.33;
   color: var(--gray);
-}
-
-.select {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  border-radius: 12px;
-  padding: 0 16px;
-  width: 204px;
-  height: 44px;
-  background: var(--inputs);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
-  color: inherit;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  outline: none;
-}
-
-.iconSelect {
-  width: 16px;
-  height: 16px;
-  fill: var(--main);
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  pointer-events: none;
 }
 
 .inputWrap {
