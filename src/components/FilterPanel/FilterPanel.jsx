@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import clsx from 'clsx';
-
+import sprite from '../../assets/sprite.svg';
 import Button from '../Button/Button';
 import s from './FilterPanel.module.css';
 import { selectBrands } from '../../redux/cars/selectors';
@@ -21,7 +21,8 @@ const FilterPanel = () => {
   const dispatch = useDispatch();
   const brands = useSelector(selectBrands);
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const [isBrandOpen, setIsBrandOpen] = useState(false);
+  const [isPriceOpen, setIsPriceOpen] = useState(false);
   const { filterBrand, rentalPrice, minMileage, maxMileage } = useSelector(selectFilters);
 
   useEffect(() => {
@@ -40,10 +41,37 @@ const FilterPanel = () => {
     dispatch(changeMaxMileage(max));
   }, [dispatch, searchParams]);
 
-  const handleBrandChange = e => dispatch(changeBrand(e.target.value));
+  const handleBrandChange = e => {
+    const selectedBrand = e.target.value;
+    dispatch(changeBrand(selectedBrand));
+    setIsBrandOpen(false);
+  };
+
+  const handleBrandBlur = () => {
+    setTimeout(() => {
+      setIsBrandOpen(false);
+    }, 100);
+  };
+
+  const handleBrandMouseDown = () => {
+    setIsBrandOpen(true);
+  };
+
   const handlePriceChange = e => {
     dispatch(changeRentalPrice(Number(e.target.value)));
+    setIsPriceOpen(false);
   };
+
+  const handlePriceBlur = () => {
+    setTimeout(() => {
+      setIsPriceOpen(false);
+    }, 100);
+  };
+
+  const handlePriceMouseDown = () => {
+    setIsPriceOpen(true);
+  };
+
   const handleMinMileageChange = e => dispatch(changeMinMileage(e.target.value));
   const handleMaxMileageChange = e => dispatch(changeMaxMileage(e.target.value));
 
@@ -77,43 +105,69 @@ const FilterPanel = () => {
         <label htmlFor="brand" className={s.label}>
           Car brand
         </label>
-        <select
-          id="brand"
-          name="brand"
-          className={s.select}
-          onChange={handleBrandChange}
-          value={filterBrand}
-        >
-          <option value="">Choose a brand</option>
-          {brands.map(brand => (
-            <option key={brand} value={brand}>
-              {brand}
-            </option>
-          ))}
-        </select>
+        <div className={s.selectWrapper}>
+          <select
+            id="brand"
+            name="brand"
+            className={s.select}
+            onChange={handleBrandChange}
+            value={filterBrand}
+            onBlur={handleBrandBlur}
+            onMouseDown={handleBrandMouseDown}
+          >
+            <option value="">Choose a brand</option>
+            {brands.map(brand => (
+              <option key={brand} value={brand}>
+                {brand}
+              </option>
+            ))}
+          </select>
+          {isBrandOpen ? (
+            <svg className={s.iconSelect}>
+              <use xlinkHref={`${sprite}#icon-up`} />
+            </svg>
+          ) : (
+            <svg className={s.iconSelect}>
+              <use xlinkHref={`${sprite}#icon-down`} />
+            </svg>
+          )}
+        </div>
       </div>
 
       <div className={s.labelWrap}>
         <label htmlFor="price" className={s.label}>
           Price/ 1 hour
         </label>
-        <select
-          id="price"
-          name="price"
-          className={s.select}
-          onChange={handlePriceChange}
-          value={rentalPrice}
-        >
-          <option value="">Choose a price</option>
-          {[...Array(18)].map((_, i) => {
-            const price = 30 + i * 10;
-            return (
-              <option key={price} value={price}>
-                {price}
-              </option>
-            );
-          })}
-        </select>
+        <div className={s.selectWrapper}>
+          <select
+            id="price"
+            name="price"
+            className={s.select}
+            onChange={handlePriceChange}
+            value={rentalPrice}
+            onBlur={handlePriceBlur}
+            onMouseDown={handlePriceMouseDown}
+          >
+            <option value="">Choose a price</option>
+            {[...Array(18)].map((_, i) => {
+              const price = 30 + i * 10;
+              return (
+                <option key={price} value={price}>
+                  {price}
+                </option>
+              );
+            })}
+          </select>
+          {isPriceOpen ? (
+            <svg className={s.iconSelect}>
+              <use xlinkHref={`${sprite}#icon-up`} />
+            </svg>
+          ) : (
+            <svg className={s.iconSelect}>
+              <use xlinkHref={`${sprite}#icon-down`} />
+            </svg>
+          )}
+        </div>
       </div>
 
       <div className={s.labelWrap}>
